@@ -6,11 +6,13 @@ import android.view.View
 import com.example.motivation.R
 import com.example.motivation.infra.MotivationConstante
 import com.example.motivation.infra.SecurityPreferences
+import com.example.motivation.repository.Mock
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var mSecurityPreferences: SecurityPreferences
+    private var phraseFilter : Int = MotivationConstante.PHRASEFILTER.ALL
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -53,20 +55,26 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         when (id) {
             R.id.imageAll -> {
+
                 imageAll.setColorFilter(resources.getColor(R.color.colorAccent))
+                phraseFilter = MotivationConstante.PHRASEFILTER.ALL
             }
             R.id.imageHappy -> {
+
                 imageHappy.setColorFilter(resources.getColor(R.color.colorAccent))
+                phraseFilter = MotivationConstante.PHRASEFILTER.HAPPY
             }
             R.id.imageMorning -> {
-                imageMorning.setColorFilter(resources.getColor(R.color.colorAccent))
-            }
 
+                imageMorning.setColorFilter(resources.getColor(R.color.colorAccent))
+                phraseFilter = MotivationConstante.PHRASEFILTER.MORNING
+            }
         }
     }
 
     private fun handleNewPhrase() {
 
+        textPhrase.text = Mock().getPhrase(phraseFilter)
     }
 }
 
