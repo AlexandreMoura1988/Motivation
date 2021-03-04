@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.example.motivation.R
+import com.example.motivation.infra.MotivationConstante
 import com.example.motivation.infra.SecurityPreferences
 import kotlinx.android.synthetic.main.activity_splah.*
 
@@ -42,9 +43,10 @@ class SplahActivity : AppCompatActivity(), View.OnClickListener {
     private fun handleSave() {
 
         val name = editName.text.toString()
+
         if(name != "") {
 
-            mSecurityPreferences.storeString("name", name)
+            mSecurityPreferences.storeString(MotivationConstante.KEY.PERSON_NAME, name)
             //Navegaçao entre activities
             startActivity(Intent(this, MainActivity::class.java))
 
